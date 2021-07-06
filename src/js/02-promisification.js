@@ -1,6 +1,6 @@
 /*
  * Промисификация:
- * - Поблема доступа к результату промиса с колбеком
+ * - Проблема доступа к результату промиса с колбеком
  * - Функция которая возвращает промис
  */
 
@@ -31,7 +31,7 @@
 //   console.log('onMakeOrderError');
 //   console.log(error);
 // }
-
+//--------------------------------------------------------------------
 /*
  * Промисификация «синхронных» функций
  * - Promise.resolve()
@@ -39,7 +39,7 @@
  */
 
 // const makeOrder = dish => {
-//   return Promise.resolve(`✅ Вот ваш заказ: ${dish}`);
+//   return Promise.resolve(`✅ Вот ваш заказ: ${dish}`); // для создания мгновенно выполняющихся успешно промисов. 
 // };
 
 // makeOrder('пирожок').then(onMakeOrderSuccess);
@@ -56,6 +56,7 @@
 
 /*
  * Покемоны с https://pokeapi.co/
+   Запрос на сервер это асинхронная операция, либо вернет рез-т либо будет ошибка
  */
 
 // const fetchPokemonById = id => {
@@ -68,7 +69,7 @@
 
 // fetchPokemonById(3).then(onFetchSuccess).catch(onFetchError);
 
-// function onFetchSuccess(pokemon) {
+// function onFetchSuccess(pokemon) { 
 //   console.log('onFetchSuccess -> onFetchSuccess');
 //   console.log(pokemon);
 // }
@@ -79,21 +80,20 @@
 //   console.log(error);
 // }
 
-// makePromise
-// const makePromise = () => {
-//   return new Promise((resolve, reject) => {
-//     const passed = Math.random() > 0.5;
+const makePromise = () => {
+  return new Promise((resolve, reject) => {
+    const passed = Math.random() > 0.5;
 
-//     setTimeout(() => {
-//       if (passed) {
-//         resolve('✅ Куку это resolve');
-//       }
+    setTimeout(() => {
+      if (passed) {
+        resolve('✅ Куку это resolve');
+      }
 
-//       reject('❌ все пропало это reject');
-//     }, 2000);
-//   });
-// };
+      reject('❌ все пропало это reject');
+    }, 2000);
+  });
+};
 
-// makePromise()
-//   .then(result => console.log(result))
-//   .catch(error => console.log(error));
+makePromise()
+  .then(result => console.log(result))
+  .catch(error => console.log(error));
