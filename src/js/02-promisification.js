@@ -1,5 +1,5 @@
 /*
- * Промисификация:
+ * Промисификация ф-ии:
  * - Проблема доступа к результату промиса с колбеком
  * - Функция которая возвращает промис
  */
@@ -8,6 +8,7 @@
 //   const DELAY = 1000;
 
 //   return new Promise((resolve, reject) => {
+
 //     const passed = Math.random() > 0.5;
 
 //     setTimeout(() => {
@@ -31,7 +32,11 @@
 //   console.log('onMakeOrderError');
 //   console.log(error);
 // }
+
+
 //--------------------------------------------------------------------
+
+
 /*
  * Промисификация «синхронных» функций
  * - Promise.resolve()
@@ -39,7 +44,7 @@
  */
 
 // const makeOrder = dish => {
-//   return Promise.resolve(`✅ Вот ваш заказ: ${dish}`); // для создания мгновенно выполняющихся успешно промисов. 
+//   return Promise.resolve(`✅ Вот ваш заказ: ${dish}`); // для создания успешно выполняющихся  промисов. 
 // };
 
 // makeOrder('пирожок').then(onMakeOrderSuccess);
@@ -54,6 +59,9 @@
 //   console.log(error);
 // }
 
+
+//================================================================================
+
 /*
  * Покемоны с https://pokeapi.co/
    Запрос на сервер это асинхронная операция, либо вернет рез-т либо будет ошибка
@@ -64,12 +72,10 @@
 // };
 
 // fetchPokemonById(1).then(onFetchSuccess).catch(onFetchError);
-
 // fetchPokemonById(2).then(onFetchSuccess).catch(onFetchError);
-
 // fetchPokemonById(3).then(onFetchSuccess).catch(onFetchError);
 
-// function onFetchSuccess(pokemon) { 
+// function onFetchSuccess(pokemon) {
 //   console.log('onFetchSuccess -> onFetchSuccess');
 //   console.log(pokemon);
 // }
@@ -80,6 +86,8 @@
 //   console.log(error);
 // }
 
+
+
 const makePromise = () => {
   return new Promise((resolve, reject) => {
     const passed = Math.random() > 0.5;
@@ -88,12 +96,12 @@ const makePromise = () => {
       if (passed) {
         resolve('✅ Куку это resolve');
       }
-
       reject('❌ все пропало это reject');
+
     }, 2000);
-  });
+  })
 };
 
-makePromise()
-  .then(result => console.log(result))
-  .catch(error => console.log(error));
+// makePromise()
+//   .then(result => console.log(result))
+//   .catch(error => console.log(error));
